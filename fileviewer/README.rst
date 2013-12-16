@@ -1,25 +1,23 @@
-.. include:: ../../../doc/userguide/src/roles.rst
-
 =============
 fileviewer.py
 =============
 
-:prog:`fileviewer.py` is a tool for viewing Robot Framework debug files. It is 
-included in source distributions and can also be downloaded from 
+``fileviewer.py`` is a tool for viewing Robot Framework debug files. It is
+included in source distributions and can also be downloaded from
 http://code.google.com/p/robotframework/wiki/FileViewingTool.
 
 Synopsis
---------
-::
+========
+.. sourcecode:: bash
 
-    fileviewer.py [debugfile]
+    $ fileviewer.py [debugfile]
 
 
 Description
------------
+===========
 
 File viewer is a tool designed to be used together with the Robot
-Framework command line option :cli:`--debugfile`. The debug file can be
+Framework command line option: *--debugfile*. The debug file can be
 opened with File viewer, and the viewer will automatically update the
 display as the debug file gets written, so that it is possible to
 scroll the file when it is being written to.

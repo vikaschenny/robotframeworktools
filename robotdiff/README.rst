@@ -1,37 +1,35 @@
-.. include:: ../../../doc/userguide/src/roles.rst
-
 ============
 robotdiff.py
 ============
 
-:prog:`robotdiff.py` is a tool for comparing two or more Robot Framework output
+``robotdiff.py`` is a tool for comparing two or more Robot Framework output
 files. It is included in source distributions and can also be downloaded from
 http://code.google.com/p/robotframework/wiki/TestResultDiffingTool.
 
 Synopsis
 --------
 
-::
+.. sourcecode:: bash
 
-    robotdiff.py [options] input files
+    $ robotdiff.py [options] input files
 
 Options
 -------
 
   -r, --report <file>       The HTML report file (created from the input files).
-                            The default is :path:`robotdiff.html`.
+                            The default is *robotdiff.html*.
   -n, --name <name>         Custom names for test runs. If this option is used,
                             it must be used as many times as there are input
                             files. By default test run names are got from the
                             input file names.
   -t, --title <title>       The title for the generated diff report. The default
-                            title is :name:`Test Run Diff Report`.
+                            title is *Test Run Diff Report*.
   -E, --escape <what:with>  Escapes certain characters that are problematic in
                             the console. "what" is the name of the character to
                             escape and "with" is the string to escape it with.
                             The available characters to escape are same as for
-                            Robot Framework. Example: :cli:`-\\-escape space:_
-                            -\\-title My_Diff_Report`
+                            Robot Framework. Example: *-\\-escape space:_
+                            -\\-title My_Diff_Report*
   -h, --help                Prints this usage instruction.
 
 Description
@@ -46,7 +44,9 @@ Framework version does not affect your test results. Another usage is
 comparing earlier test results with newer ones to find out possible
 status changes and added test cases.
 
-Examples::
+Examples:
+
+.. sourcecode:: bash
 
     $ robotdiff.py output1.xml output2.xml output3.xml
     $ robotdiff.py --name Env1 --name Env2 smoke1.xml smoke2.xml

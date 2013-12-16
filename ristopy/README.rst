@@ -1,13 +1,11 @@
-.. include:: ../../../doc/userguide/src/roles.rst
-
 ===========================================================
   risto.py -- Robot Framework's Historical Reporting Tool
 ===========================================================
 
-:prog:`risto.py` is a tool for plotting graphs about test execution
+``risto.py`` is a tool for plotting graphs about test execution
 history based on statistics read from Robot Framework output files.
 Actual drawing is handled by Matplotlib tool, which must be installed
-separately. :prog:`risto.py` is included in source distributions and can also
+separately. ``risto.py`` is included in source distributions and can also
 be downloaded from
 http://code.google.com/p/robotframework/wiki/HistoricalReportingTool.
 
@@ -17,11 +15,11 @@ http://code.google.com/p/robotframework/wiki/HistoricalReportingTool.
 Synopsis
 --------
 
-::
+.. sourcecode:: bash
 
-  risto.py options input files
-  risto.py options1 --- options2 --- optionsN --- input files
-  risto.py --argumentfile path
+  $ risto.py options input files
+  $ risto.py options1 --- options2 --- optionsN --- input files
+  $ risto.py --argumentfile path
 
 Options
 -------
@@ -62,7 +60,7 @@ images at once.
 Description
 -----------
 
-:prog:`risto.py` plots graphs about test execution history, based on
+``risto.py`` plots graphs about test execution history, based on
 statistics read from Robot Framework's XML output files. By default,
 it draws total, passed and failed graphs for critical tests and all
 tests, but it is possible to omit some of these graphs and also to add
@@ -71,9 +69,9 @@ graphs by tags.
 Names of test rounds that are shown on the x-axis are, by default,
 obtained from the paths to input files. Alternatively, names can be
 obtained from the metadata of the top-level test suite (for more
-information, see Robot Framework's :opt:`--metadata` option).
+information, see Robot Framework's *--metadata* option).
 
-Graphs are saved to a file specified with the :opt:`--output` option,
+Graphs are saved to a file specified with the *--output* option,
 and the output format is determined by the file extension. The
 supported formats depend on the installed Matplotlib back-ends, but at
 least PNG ought to be always available. If the output file is omitted,
@@ -88,13 +86,13 @@ Examples::
 
 It is possible to draw several graphs with different options at
 once. This is done by separating different option groups with three or
-more hyphens (:opt:`---`).  Note that in this case, also paths to
+more hyphens (*---*).  Note that in this case, also paths to
 input files need to be separated from the options similarly::
 
    risto.py -CAP -t tag1 --- -CAP -t tag2 --- -CAP -t tag3 --- outputs/*.xml
 
 Instead of giving all options from the command line, it is possible to
-read them from a file specified with the :opt:`--argument` option. In
+read them from a file specified with the *--argument* option. In
 an argument file, options and their possible arguments are listed one
 per line, and option groups are separated with lines of three or more
 hyphens. Empty lines and lines starting with a hash mark (#) are
@@ -121,7 +119,7 @@ ignored::
 Installation
 ------------
 
-:prog:`risto.py` itself does not need to be installed, simply running
+``risto.py`` itself does not need to be installed, simply running
 it from the command line is enough. It has some preconditions, though,
 first ones being Robot Framework and Python.
 
@@ -149,10 +147,10 @@ Default settings
 
 The screenshot below uses some very simple example outputs, thus the lines
 are mainly straight. The default settings have been used otherwise,
-but the output has been saved into a file with the :opt:`--output
+but the output has been saved into a file with the *--output*
 default.png` option.
 
-.. figure:: risto_default.png
+.. figure:: doc/risto_default.png
    :width: 800
    :height: 400
 
@@ -164,7 +162,7 @@ one, but now the following options have been specified::
 
    --nopassed --noall --tag f1 --title Another_Example --width 600 --height 250 --font 6 --marker 3 --output another.png
 
-.. figure:: risto_another.png
+.. figure:: doc/risto_another.png
    :width: 600
    :height: 250
 
@@ -172,12 +170,12 @@ Using Matplotlib's viewer
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This time there are more input files and the image has been opened
-in Matplotlib's viewer (that is, the :opt:`--output` option has not been
+in Matplotlib's viewer (that is, the *--output* option has not been
 used). The options used to create this example are the ones below::
 
    -CAP -t d1_AND_d2 -t t1 -t sub3 -i Yet_Another_Example -x 20 -w 1000 -n Name
 
-.. figure:: risto_yetanother.png
+.. figure:: doc/risto_yetanother.png
    :width: 820
    :height: 393
 
@@ -201,10 +199,10 @@ following argument file:
    ------------------
    path/*/output.xml
 
-.. figure:: risto_overview.png
+.. figure:: doc/risto_overview.png
    :width: 800
    :height: 400
 
-.. figure:: risto_drt.png
+.. figure:: doc/risto_drt.png
    :width: 800
    :height: 400
