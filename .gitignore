@@ -1,0 +1,6 @@
+.pydevproject
+.project
+.idea/
+*.pyc
+.DS_Store
+times2csv/test/output.*
