@@ -145,8 +145,9 @@ Default settings
 
 The screenshot below uses some very simple example outputs, thus the lines
 are mainly straight. The default settings have been used otherwise,
-but the output has been saved into a file with the *--output*
-default.png` option.
+but the output has been saved into a file with the option::
+
+   --output default.png
 
 .. figure:: https://bitbucket.org/robotframework/robottools/raw/master/ristopy/doc/risto_default.png
    :width: 800

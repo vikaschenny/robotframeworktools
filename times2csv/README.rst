@@ -18,7 +18,7 @@ Description
 Robot Framework Start/End/Elapsed Time Reporter
 
 This script reads start, end, and elapsed times from all suites, tests and/or
-keywords from the given output file, and writes them into an file in
+keywords from the given output file, and writes them into a file in
 comma-separated-values (CSV) format. CSV files can then be further processed
 with spreadsheet programs. If the CSV output file is not given, its name is
 got from the input file by replacing the *.xml* extension with *.csv*.

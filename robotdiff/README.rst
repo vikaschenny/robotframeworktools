@@ -27,8 +27,8 @@ Options
                             the console. "what" is the name of the character to
                             escape and "with" is the string to escape it with.
                             The available characters to escape are same as for
-                            Robot Framework. Example: *-\\-escape space:_
-                            -\\-title My_Diff_Report*
+                            Robot Framework. Example:
+                            --escape space:_ --title My_Diff_Report
   -h, --help                Prints this usage instruction.
 
 Description
