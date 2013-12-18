@@ -1,11 +1,14 @@
 #!/usr/bin/env python
 
+"""Unit tests for risto.py"""
+
 import unittest
 import StringIO
-from os.path import join, abspath
+import sys
+from os.path import join, abspath, dirname
 
-from robot.utils.asserts import *
-
+BASEDIR = dirname(abspath(__file__))
+sys.path.append(join(BASEDIR, '..'))
 from risto import AllStatistics, Statistics, Plotter
 
 
@@ -16,7 +19,7 @@ class TestGetNamesFromPaths(unittest.TestCase):
 
     def _test(self, paths, expected):
         actual = AllStatistics([])._get_names(paths)
-        assert_equals(actual, expected)
+        self.assertEqual(actual, expected)
 
     def test_from_basename(self):
         self._test(['foo.xml','bar.xml'], ['Foo','Bar'])
@@ -60,7 +63,7 @@ class TestGetXTicks(unittest.TestCase):
 
     def _test(self, slen, limit, expected):
         actual = Plotter()._get_xticks(slen, limit)
-        assert_equals(actual, expected)
+        self.assertEqual(actual, expected)
 
     def test_one_stat(self):
         self._test(1, 10, [0])
@@ -89,7 +92,7 @@ class TestStatistics(unittest.TestCase):
         self.stats = Statistics(StringIO.StringIO(OUTPUT), 'My Stats')
 
     def test_name(self):
-        assert_equals(self.stats.name, 'My Stats')
+        self.assertEqual(self.stats.name, 'My Stats')
 
     def test_totals(self):
         self._assert_tag_stat(self.stats.critical_tests, 3, 2)
@@ -106,13 +109,13 @@ class TestStatistics(unittest.TestCase):
 
     def _assert_tag_stat(self, stat, passed, failed, critical=False,
                          non_crit=False, combined=False, doc=''):
-        assert_equals(stat.passed, passed, '%s passed' % stat.name)
-        assert_equals(stat.failed, failed, '%s failed' % stat.name)
-        assert_equals(stat.total, passed+failed, '%s total' % stat.name)
-        assert_equals(stat.critical, critical, '%s critical' % stat.name)
-        assert_equals(stat.non_critical, non_crit, '%s non-crit' % stat.name)
-        assert_equals(stat.combined, combined, '%s combined' % stat.name)
-        assert_equals(stat.doc, doc, '%s doc' % stat.name)
+        self.assertEqual(stat.passed, passed, '%s passed' % stat.name)
+        self.assertEqual(stat.failed, failed, '%s failed' % stat.name)
+        self.assertEqual(stat.total, passed+failed, '%s total' % stat.name)
+        self.assertEqual(stat.critical, critical, '%s critical' % stat.name)
+        self.assertEqual(stat.non_critical, non_crit, '%s non-crit' % stat.name)
+        self.assertEqual(stat.combined, combined, '%s combined' % stat.name)
+        self.assertEqual(stat.doc, doc, '%s doc' % stat.name)
 
 
 OUTPUT = """<?xml version="1.0" encoding="UTF-8"?>
