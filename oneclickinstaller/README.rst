@@ -19,7 +19,8 @@ installer *ONLY* if you do not previously have Python or Jython
 installed. In that case, and also if you want to have a custom
 installation, you need to install the needed components separately.
 
-.. Note:: The One Click Installer works only on Windows XP.
+    **Note:**
+        The One Click Installer works only on Windows XP.
 
 
 Installers
@@ -52,12 +53,11 @@ installation directory as argument like
 *RobotFrameworkOneClickInstaller.exe C:\\APPS\\*.
 
 
-.. Note::
-
-	The specified base directory *MUST* exist, whereas Python and Jython
-	directories inside it must not. It is also not recommended to
-	use a path containing spaces. Good candidates include
-	directories such as `C:\\` and `C:\\APPS\\`.
+    **Note:**
+        The specified base directory *MUST* exist, whereas Python and Jython
+        directories inside it must not. It is also not recommended to
+        use a path containing spaces. Good candidates include
+        directories such as *C:\\* and *C:\\APPS\\*.
 
 Screenshot
 ==========
