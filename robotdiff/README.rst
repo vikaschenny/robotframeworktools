@@ -3,8 +3,7 @@ robotdiff.py
 ============
 
 ``robotdiff.py`` is a tool for comparing two or more Robot Framework output
-files. It is included in source distributions and can also be downloaded from
-http://code.google.com/p/robotframework/wiki/TestResultDiffingTool.
+files.
 
 Synopsis
 --------

@@ -1,13 +1,11 @@
-===========================================================
-  risto.py -- Robot Framework's Historical Reporting Tool
-===========================================================
+=======================================================
+risto.py -- Robot Framework's Historical Reporting Tool
+=======================================================
 
 ``risto.py`` is a tool for plotting graphs about test execution
 history based on statistics read from Robot Framework output files.
 Actual drawing is handled by Matplotlib tool, which must be installed
-separately. ``risto.py`` is included in source distributions and can also
-be downloaded from
-http://code.google.com/p/robotframework/wiki/HistoricalReportingTool.
+separately.
 
 .. contents::
    :local:
@@ -150,7 +148,7 @@ are mainly straight. The default settings have been used otherwise,
 but the output has been saved into a file with the *--output*
 default.png` option.
 
-.. figure:: doc/risto_default.png
+.. figure:: https://bitbucket.org/robotframework/robottools/raw/master/ristopy/doc/risto_default.png
    :width: 800
    :height: 400
 
@@ -162,7 +160,7 @@ one, but now the following options have been specified::
 
    --nopassed --noall --tag f1 --title Another_Example --width 600 --height 250 --font 6 --marker 3 --output another.png
 
-.. figure:: doc/risto_another.png
+.. figure:: https://bitbucket.org/robotframework/robottools/raw/master/ristopy/doc/risto_another.png
    :width: 600
    :height: 250
 
@@ -175,7 +173,7 @@ used). The options used to create this example are the ones below::
 
    -CAP -t d1_AND_d2 -t t1 -t sub3 -i Yet_Another_Example -x 20 -w 1000 -n Name
 
-.. figure:: doc/risto_yetanother.png
+.. figure:: https://bitbucket.org/robotframework/robottools/raw/master/ristopy/doc/risto_yetanother.png
    :width: 820
    :height: 393
 
@@ -199,10 +197,10 @@ following argument file:
    ------------------
    path/*/output.xml
 
-.. figure:: doc/risto_overview.png
+.. figure:: https://bitbucket.org/robotframework/robottools/raw/master/ristopy/doc/risto_overview.png
    :width: 800
    :height: 400
 
-.. figure:: doc/risto_drt.png
+.. figure:: https://bitbucket.org/robotframework/robottools/raw/master/ristopy/doc/risto_drt.png
    :width: 800
    :height: 400

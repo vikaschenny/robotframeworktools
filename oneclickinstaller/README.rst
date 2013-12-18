@@ -3,8 +3,7 @@ Robot Framework One Click Installer
 ===================================
 
 An AutoIT_ script for installing `Robot Framework`_ and its preconditions
-on Windows XP machines. For download instructions see the tool's wiki page at
-http://code.google.com/p/robotframework/wiki/OneClickInstaller.
+on Windows XP machines.
 
 
 Description
@@ -35,22 +34,22 @@ version 1.4 or newer must be already installed. Minimum supported versions
 are Robot Framework 2.0, Python 2.5 and Jython 2.2, but latest versions are
 always recommended. These installers can be downloaded from the respective
 project web sites. The expected patterns for installer names are
-`robotframework-2.*.exe` , `python-2.*.msi`, and `jython_installer-2.*.jar`.
+*robotframework-2.\*.exe* , *python-2.\*.msi*, and *jython_installer-2.\*.jar*.
 
 
 Usage
 =====
 
 All you need to specify is the base directory where to install Python and
-Jython. They are installed into the directories `Python` and
-`Jython`, respectively, inside the given base directory. Robot
+Jython. They are installed into the directories *Python* and
+*Jython*, respectively, inside the given base directory. Robot
 Framework itself is installed under the Python installation directory. Its
-startup scripts can be found from `[PYTHON]\\Scripts` and code from
-`[PYTHON]\\Lib\\site-packages`.
+startup scripts can be found from *[PYTHON]\\Scripts* and code from
+*[PYTHON]\\Lib\\site-packages*.
 
 It is possible to run the One Click Installer from command line by giving the
 installation directory as argument like
-`RobotFrameworkOneClickInstaller.exe C:\\APPS\\`.
+*RobotFrameworkOneClickInstaller.exe C:\\APPS\\*.
 
 
 .. Note::
@@ -63,7 +62,7 @@ installation directory as argument like
 Screenshot
 ==========
 
-.. figure:: oneclickinstaller.png
+.. figure:: https://bitbucket.org/robotframework/robottools/raw/master/oneclickinstaller/oneclickinstaller.png
    :width: 400
    :height: 250
 
