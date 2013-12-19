@@ -20,7 +20,7 @@ __ http://bitbucket.org/robotframework/robottools/src/master/fileviewer
 oneclickinstaller__
 ===================
     An AutoIT script to automatically install Robot Framework and
-    its dependencies on a Windows machine.
+    its dependencies on a Windows XP machine.
 
 __ http://bitbucket.org/robotframework/robottools/src/master/oneclickinstaller
 

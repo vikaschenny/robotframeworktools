@@ -2,10 +2,14 @@
 risto.py -- Robot Framework's Historical Reporting Tool
 =======================================================
 
-``risto.py`` is a tool for plotting graphs about test execution
-history based on statistics read from Robot Framework output files.
+``risto.py`` is a tool for plotting graphs about test execution history based
+on statistics read from Robot Framework output files. The tool can be
+downloaded here__.
+
 Actual drawing is handled by Matplotlib tool, which must be installed
 separately.
+
+__ download_
 
 .. contents::
    :local:
@@ -118,8 +122,10 @@ Installation
 ------------
 
 ``risto.py`` itself does not need to be installed, simply running
-it from the command line is enough. It has some preconditions, though,
-first ones being Robot Framework and Python.
+it from the command line is enough. The tool can be downloaded here__.
+It has some preconditions, though, first ones being Robot Framework and Python.
+
+__ download_
 
 The Matplotlib tool is used for plotting graphs, and it needs to be
 installed separately. Matplotlib has its own preconditions, and at
@@ -205,3 +211,5 @@ following argument file:
 .. figure:: https://bitbucket.org/robotframework/robottools/raw/master/ristopy/doc/risto_drt.png
    :width: 800
    :height: 400
+
+.. _download: https://bitbucket.org/robotframework/robottools/raw/master/ristopy/risto.py

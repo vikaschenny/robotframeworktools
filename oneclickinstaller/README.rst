@@ -3,7 +3,10 @@ Robot Framework One Click Installer
 ===================================
 
 An AutoIT_ script for installing `Robot Framework`_ and its preconditions
-on Windows XP machines.
+on Windows XP machines. The installer executable can be downloaded from
+`project downloads`__.
+
+__ https://bitbucket.org/robotframework/robottools/downloads
 
 
 Description

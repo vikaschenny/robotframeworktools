@@ -4,6 +4,9 @@ times2csv.py
 
 ``times2csv.py`` is a tool for creating a CSV file containing
 suite, test and keyword execution times (start/end/elapsed time).
+The tool can be downloaded here__.
+
+__ https://bitbucket.org/robotframework/robottools/raw/master/times2csv/times2csv.py
 
 Synopsis
 --------

@@ -2,7 +2,10 @@
 fileviewer.py
 =============
 
-``fileviewer.py`` is a tool for viewing Robot Framework debug files.
+``fileviewer.py`` is a tool for viewing Robot Framework debug files. It can be
+downloaded here__.
+
+__ https://bitbucket.org/robotframework/robottools/raw/master/fileviewer/fileviewer.py
 
 Synopsis
 ========
