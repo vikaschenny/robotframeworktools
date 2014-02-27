@@ -14,6 +14,12 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
+"""\
+This is a tool that helps you to profile where the most of the time in your test cases is consumed.
+This is helpful for example in situations where you want to optimise the test execution times.
+
+USAGE: keywordtimes.py [input file output.xml]
+"""
 
 from robot.api import ExecutionResult, ResultVisitor
 import math, re
@@ -93,8 +99,5 @@ if __name__ == '__main__':
                 ' | ' + str(k.standard_deviation).rjust(22) + (' | "%s"' % k.name)
       print 'Showing %d of total keywords %d' % (shown_keywords, len(times.keywords))
     except:
-        print '='*80
-        print 'Usage: keywordtimes.py output.xml' 
-        print '>> prints %d most time consuming keywords based on cumulative time' % shown_keywords
-        print '='*80
+        print __doc__
         raise
