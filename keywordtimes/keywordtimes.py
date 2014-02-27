@@ -81,7 +81,7 @@ class KeywordsTime(object):
         return round(self.variance**0.5, 3)
 
     def __cmp__(self, other):
-        return other.elapsed - self.elapsed
+        return cmp(other.elapsed, self.elapsed)
 
 
 if __name__ == '__main__':
