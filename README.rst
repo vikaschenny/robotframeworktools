@@ -36,6 +36,12 @@ robotdiff__
 
 __ http://bitbucket.org/robotframework/robottools/src/master/robotdiff
 
+keywordtimes__
+============
+    A tool for profiling / showing the most time consuming keywords from an output.xml.
+    
+__ http://bitbucket.org/robotframework/robottools/src/master/keywordtimes
+
 times2csv__
 ===========
     A tool that reads start, end and elapsed times of every test suite,
