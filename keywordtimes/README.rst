@@ -12,6 +12,8 @@ This is helpful for example in situations where you want to optimise the test ex
    Example output:
 
    Total time (s) | Number of calls | avg time (s) | median time (s) | standard deviation (s) | Keyword name
-              0.0 |               2 |          0.0 |             0.0 |                    0.0 | "BuiltIn.No Operation"
-   Showing 100 of total keywords 1
+            0.612 |               2 |        0.306 |           0.306 |                    0.0 | "Some Keyword"
+            0.606 |               4 |        0.151 |           0.151 |                   0.05 | "BuiltIn.Sleep"
+            0.406 |               2 |        0.203 |           0.203 |                    0.0 | "Other Keyword"
+   Showing 100 of total keywords 3
 
