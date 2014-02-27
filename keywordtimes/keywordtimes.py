@@ -63,14 +63,21 @@ class KeywordsTime(object):
 
 if __name__ == '__main__':
     import sys
-    resu = ExecutionResult(sys.argv[1])
-    times = KeywordTimes()
-    resu.visit(times)
-    s = sorted(times.keywords.values())
     shown_keywords = 100
-    print 'Total time (s) | Number of calls | avg time (s) | median time (s) | standard deviation (s) | Keyword name'
-    for k in s[:shown_keywords]:
+    try:
+      resu = ExecutionResult(sys.argv[1])
+      times = KeywordTimes()
+      resu.visit(times)
+      s = sorted(times.keywords.values())
+      print 'Total time (s) | Number of calls | avg time (s) | median time (s) | standard deviation (s) | Keyword name'
+      for k in s[:shown_keywords]:
         print str(k.elapsed).rjust(14)+' | '+str(k.calls).rjust(15)+ ' | ' + \
                 str(k.average_time).rjust(12) + ' | ' + str(k.median_time).rjust(15) + \
                 ' | ' + str(k.standard_deviation).rjust(22) + (' | "%s"' % k.name)
-    print 'Showing %d of total keywords %d' % (shown_keywords, len(times.keywords))
+      print 'Showing %d of total keywords %d' % (shown_keywords, len(times.keywords))
+    except:
+        print '='*80
+        print 'Usage: keywordtimes.py output.xml' 
+        print '>> prints %d most time consuming keywords based on cumulative time' % shown_keywords
+        print '='*80
+        raise
