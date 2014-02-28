@@ -17,8 +17,6 @@
 """\
 This is a tool that helps you to profile where the most of the time in your test cases is consumed.
 This is helpful for example in situations where you want to optimise the test execution times.
-
-USAGE: keywordtimes.py [input file output.xml]
 """
 
 from robot.api import ExecutionResult
@@ -29,6 +27,8 @@ except ImportError:    # Not exposed via robot.api in RF 2.7
     from robot.result.visitor import ResultVisitor
 
 import math, re
+import argparse
+
 
 class KeywordTimes(ResultVisitor):
 
@@ -86,27 +86,46 @@ class KeywordsTime(object):
     def standard_deviation(self):
         return round(self.variance**0.5, 3)
 
+    @property
+    def stdev_per_avgtime(self):
+        if self.average_time == 0:
+            return 0
+        return round(100*self.standard_deviation/self.average_time, 2)
+
     def __cmp__(self, other):
         return cmp(other.elapsed, self.elapsed)
 
 
-def _print_results(times, shown_keywords):
+def _print_results(times, shown_keywords, limit):
     s = sorted(times.keywords.values())
-    print 'Total time (s) | Number of calls | avg time (s) | median time (s) | standard deviation (s) | Keyword name'
-    for k in s[:shown_keywords]:
-        print str(k.elapsed).rjust(14)+' | '+str(k.calls).rjust(15)+ ' | ' + \
+    print 'Total time (s) |   Calls | avg time (s) | median time (s) | stdev (s) | stdev/avg time % | Keyword name'
+    shown = 0
+    for k in s:
+        if shown == shown_keywords:
+            break
+        if limit is not None and k.stdev_per_avgtime > limit:
+            continue
+        shown += 1
+        print str(k.elapsed).rjust(14)+' | '+str(k.calls).rjust(7)+ ' | ' + \
                 str(k.average_time).rjust(12) + ' | ' + str(k.median_time).rjust(15) + \
-                ' | ' + str(k.standard_deviation).rjust(22) + (' | "%s"' % k.name)
-    print 'Showing %d of total keywords %d' % (min(shown_keywords, len(times.keywords)), len(times.keywords))
+                ' | ' + str(k.standard_deviation).rjust(9) + ' | ' + str(k.stdev_per_avgtime).rjust(16) + (' | "%s"' % k.name)
+    print 'Showing %d of total keywords %d' % (shown, len(times.keywords))
 
 
 if __name__ == '__main__':
-    import sys
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--limit', '-l', type=float, help='Filter out keywords with larger percentage'
+            ' of stdev/avg time than LIMIT. This helps by filtering out most used "primitive" keywords'
+            ' such as Sleep and Run Keyword If etc. and let\'s you focus on the keywords that very often'
+            ' take a lot of time to execute (in other words are most fruitful places to focus optimisation effort).')
+    parser.add_argument('--show', '-s', default=100, type=int, help='Max number of shown keywords. Default is 100.')
+    parser.add_argument('source', help='output from a Robot Framework execution to analyze')
+    args = parser.parse_args()
     try:
-      resu = ExecutionResult(sys.argv[1])
+      resu = ExecutionResult(args.source)
       times = KeywordTimes()
       resu.visit(times)
-      _print_results(times, 100)
+      _print_results(times, args.show, args.limit)
     except:
         print __doc__
         raise
