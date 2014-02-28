@@ -15,5 +15,5 @@ This is helpful for example in situations where you want to optimise the test ex
             0.612 |               2 |        0.306 |           0.306 |                    0.0 | "Some Keyword"
             0.606 |               4 |        0.151 |           0.151 |                   0.05 | "BuiltIn.Sleep"
             0.406 |               2 |        0.203 |           0.203 |                    0.0 | "Other Keyword"
-   Showing 100 of total keywords 3
+   Showing 3 of total keywords 3
 

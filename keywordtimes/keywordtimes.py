@@ -103,7 +103,7 @@ if __name__ == '__main__':
         print str(k.elapsed).rjust(14)+' | '+str(k.calls).rjust(15)+ ' | ' + \
                 str(k.average_time).rjust(12) + ' | ' + str(k.median_time).rjust(15) + \
                 ' | ' + str(k.standard_deviation).rjust(22) + (' | "%s"' % k.name)
-      print 'Showing %d of total keywords %d' % (shown_keywords, len(times.keywords))
+      print 'Showing %d of total keywords %d' % (min(shown_keywords, len(times.keywords)), len(times.keywords))
     except:
         print __doc__
         raise
