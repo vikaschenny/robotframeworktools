@@ -21,7 +21,13 @@ This is helpful for example in situations where you want to optimise the test ex
 USAGE: keywordtimes.py [input file output.xml]
 """
 
-from robot.api import ExecutionResult, ResultVisitor
+from robot.api import ExecutionResult
+
+try:
+    from robot.api import ResultVisitor
+except ImportError:    # Not exposed via robot.api in RF 2.7
+    from robot.result.visitor import ResultVisitor
+
 import math, re
 
 class KeywordTimes(ResultVisitor):
