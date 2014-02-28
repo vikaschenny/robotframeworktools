@@ -90,20 +90,23 @@ class KeywordsTime(object):
         return cmp(other.elapsed, self.elapsed)
 
 
+def _print_results(times, shown_keywords):
+    s = sorted(times.keywords.values())
+    print 'Total time (s) | Number of calls | avg time (s) | median time (s) | standard deviation (s) | Keyword name'
+    for k in s[:shown_keywords]:
+        print str(k.elapsed).rjust(14)+' | '+str(k.calls).rjust(15)+ ' | ' + \
+                str(k.average_time).rjust(12) + ' | ' + str(k.median_time).rjust(15) + \
+                ' | ' + str(k.standard_deviation).rjust(22) + (' | "%s"' % k.name)
+    print 'Showing %d of total keywords %d' % (min(shown_keywords, len(times.keywords)), len(times.keywords))
+
+
 if __name__ == '__main__':
     import sys
-    shown_keywords = 100
     try:
       resu = ExecutionResult(sys.argv[1])
       times = KeywordTimes()
       resu.visit(times)
-      s = sorted(times.keywords.values())
-      print 'Total time (s) | Number of calls | avg time (s) | median time (s) | standard deviation (s) | Keyword name'
-      for k in s[:shown_keywords]:
-        print str(k.elapsed).rjust(14)+' | '+str(k.calls).rjust(15)+ ' | ' + \
-                str(k.average_time).rjust(12) + ' | ' + str(k.median_time).rjust(15) + \
-                ' | ' + str(k.standard_deviation).rjust(22) + (' | "%s"' % k.name)
-      print 'Showing %d of total keywords %d' % (min(shown_keywords, len(times.keywords)), len(times.keywords))
+      _print_results(times, 100)
     except:
         print __doc__
         raise
