@@ -2,9 +2,6 @@
 keywordtimes.py
 ===============
 
-This is a tool that helps you to profile where the most of the time in your test cases is consumed.
-This is helpful for example in situations where you want to optimise the test execution times.
-
 .. sourcecode:: bash
 
    usage: keywordtimes.py [-h] [--limit LIMIT] [--show SHOW] source
