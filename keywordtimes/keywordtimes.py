@@ -19,37 +19,26 @@ This is a tool that helps you to profile where the most of the time in your test
 This is helpful for example in situations where you want to optimise the test execution times.
 """
 
-from __future__ import print_function
-from robot.api import ExecutionResult
-import functools
+from __future__ import division, print_function
 
-try:
-    from robot.api import ResultVisitor
-except ImportError:    # Not exposed via robot.api in RF 2.7
-    from robot.result.visitor import ResultVisitor
-
-import math, re
 import argparse
+import functools
+import math
+
+from robot.api import ExecutionResult, ResultVisitor
+
 
 class KeywordTimes(ResultVisitor):
-
-    VAR_PATTERN = re.compile(r'^(\$|\@)\{[^\}]+\}(, \$\{[^\}]+\})* = ')
 
     def __init__(self):
         self.keywords = {}
 
     def end_keyword(self, keyword):
-        name = self._get_name(keyword)
-        if name not in self.keywords:
-           self.keywords[name] = KeywordsTime(name)
-        self.keywords[name].elapsedtimes += [keyword.elapsedtime]
-
-    def _get_name(self, keyword):
         name = keyword.name
-        m = self.VAR_PATTERN.search(name)
-        if m:
-           return name[m.end():]
-        return name
+        if name not in self.keywords:
+            self.keywords[name] = KeywordsTime(name)
+        self.keywords[name].elapsedtimes.append(keyword.elapsedtime)
+
 
 @functools.total_ordering
 class KeywordsTime(object):
@@ -60,7 +49,7 @@ class KeywordsTime(object):
 
     @property
     def elapsed(self):
-        return float(sum(self.elapsedtimes))/1000
+        return sum(self.elapsedtimes) / 1000
 
     @property
     def calls(self):
@@ -68,30 +57,34 @@ class KeywordsTime(object):
 
     @property
     def average_time(self):
-        return round(float(self.elapsed)/self.calls, 3)
+        return round(self.elapsed / self.calls, 3)
 
     @property
     def median_time(self):
         s = sorted(self.elapsedtimes)
-        half = float(len(s)-1) / 2
+        half = (len(s) - 1) / 2
         half_low = int(math.floor(half))
         half_high = int(math.ceil(half))
-        return round(float(s[half_low]+s[half_high])/2000, 3)
+        return round(s[half_low] + s[half_high] / 2000, 3)
 
     @property
     def variance(self):
-        squares = [(float(i)/1000)**2 for i in self.elapsedtimes]
-        return sum(squares)/len(squares)-(self.elapsed/self.calls)**2
+        squares = [(t / 1000) ** 2 for t in self.elapsedtimes]
+        return sum(squares) / len(squares) - (self.elapsed / self.calls) ** 2
 
     @property
     def standard_deviation(self):
-        return round(self.variance**0.5, 3)
+        return round(self.variance ** 0.5, 3)
 
     @property
     def stdev_per_avgtime(self):
         if self.average_time == 0:
             return 0
-        return round(100*self.standard_deviation/self.average_time, 2)
+        return round(100 * self.standard_deviation / self.average_time, 2)
+
+    def __eq__(self, other):
+        return (isinstance(other, KeywordsTime)
+                and self.elapsed == other.elapsed)
 
     def __lt__(self, other):
         return other.elapsed < self.elapsed
@@ -99,7 +92,7 @@ class KeywordsTime(object):
 
 def _print_results(times, shown_keywords, limit):
     s = sorted(times.keywords.values())
-    print('Total time (s) |   Calls | avg time (s) | median time (s) | stdev (s) | stdev/avg time % | Keyword name')
+    print('Total time (s) |   Calls | Avg time (s) | Median time (s) | Stdev (s) | Stdev/avg time % | Keyword name')
     shown = 0
     for k in s:
         if shown == shown_keywords:
@@ -107,9 +100,13 @@ def _print_results(times, shown_keywords, limit):
         if limit is not None and k.stdev_per_avgtime > limit:
             continue
         shown += 1
-        print(str(k.elapsed).rjust(14)+' | '+str(k.calls).rjust(7)+ ' | ' + \
-                str(k.average_time).rjust(12) + ' | ' + str(k.median_time).rjust(15) + \
-                ' | ' + str(k.standard_deviation).rjust(9) + ' | ' + str(k.stdev_per_avgtime).rjust(16) + (' | "%s"' % k.name))
+        print('{k.elapsed:>14} | '
+              '{k.calls:>7} | '
+              '{k.average_time:>12} | '
+              '{k.median_time:>15} | '
+              '{k.standard_deviation:>9} | '
+              '{k.stdev_per_avgtime:>16} | '
+              u'{k.name}'.format(k=k))
     print('Showing %d of total keywords %d' % (shown, len(times.keywords)))
 
 
@@ -128,5 +125,5 @@ if __name__ == '__main__':
       resu.visit(times)
       _print_results(times, args.show, args.limit)
     except:
-        print( __doc__)
+        print(__doc__)
         raise
