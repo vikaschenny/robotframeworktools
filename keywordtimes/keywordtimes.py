@@ -19,7 +19,9 @@ This is a tool that helps you to profile where the most of the time in your test
 This is helpful for example in situations where you want to optimise the test execution times.
 """
 
+from __future__ import print_function
 from robot.api import ExecutionResult
+import functools
 
 try:
     from robot.api import ResultVisitor
@@ -28,7 +30,6 @@ except ImportError:    # Not exposed via robot.api in RF 2.7
 
 import math, re
 import argparse
-
 
 class KeywordTimes(ResultVisitor):
 
@@ -50,7 +51,7 @@ class KeywordTimes(ResultVisitor):
            return name[m.end():]
         return name
 
-
+@functools.total_ordering
 class KeywordsTime(object):
 
     def __init__(self, name):
@@ -92,13 +93,13 @@ class KeywordsTime(object):
             return 0
         return round(100*self.standard_deviation/self.average_time, 2)
 
-    def __cmp__(self, other):
-        return cmp(other.elapsed, self.elapsed)
+    def __lt__(self, other):
+        return other.elapsed < self.elapsed
 
 
 def _print_results(times, shown_keywords, limit):
     s = sorted(times.keywords.values())
-    print 'Total time (s) |   Calls | avg time (s) | median time (s) | stdev (s) | stdev/avg time % | Keyword name'
+    print('Total time (s) |   Calls | avg time (s) | median time (s) | stdev (s) | stdev/avg time % | Keyword name')
     shown = 0
     for k in s:
         if shown == shown_keywords:
@@ -106,10 +107,10 @@ def _print_results(times, shown_keywords, limit):
         if limit is not None and k.stdev_per_avgtime > limit:
             continue
         shown += 1
-        print str(k.elapsed).rjust(14)+' | '+str(k.calls).rjust(7)+ ' | ' + \
+        print(str(k.elapsed).rjust(14)+' | '+str(k.calls).rjust(7)+ ' | ' + \
                 str(k.average_time).rjust(12) + ' | ' + str(k.median_time).rjust(15) + \
-                ' | ' + str(k.standard_deviation).rjust(9) + ' | ' + str(k.stdev_per_avgtime).rjust(16) + (' | "%s"' % k.name)
-    print 'Showing %d of total keywords %d' % (shown, len(times.keywords))
+                ' | ' + str(k.standard_deviation).rjust(9) + ' | ' + str(k.stdev_per_avgtime).rjust(16) + (' | "%s"' % k.name))
+    print('Showing %d of total keywords %d' % (shown, len(times.keywords)))
 
 
 if __name__ == '__main__':
@@ -127,5 +128,5 @@ if __name__ == '__main__':
       resu.visit(times)
       _print_results(times, args.show, args.limit)
     except:
-        print __doc__
+        print( __doc__)
         raise
